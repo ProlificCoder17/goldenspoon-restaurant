@@ -1,16 +1,8 @@
-import './styles/theme.css'
+import Home from './pages/Home'
 
 function App() {
 
-  return (
-    <>
-      <section id="center">
-        <div>
-          <h1>FRONTEND RUNNING</h1>
-        </div>
-        </section>
-    </>
-  )
+  return <Home />
 }
 
 export default App
