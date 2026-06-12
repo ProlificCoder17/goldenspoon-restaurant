@@ -6,6 +6,7 @@ export default defineConfig({
   base: '/goldenspoon-restaurant/',
   build: {
     outDir: 'docs',
+    emptyOutDir: true,
   },
   resolve: {
     dedupe: ['react', 'react-dom'],
