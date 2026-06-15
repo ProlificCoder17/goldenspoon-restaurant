@@ -1,28 +1,62 @@
-import { FaBars } from 'react-icons/fa'
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const links = ['About', 'Services', 'Testimonials', 'Contact']
+
   return (
-    <nav className="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-yellow-600/20">
-      <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+    <nav className="fixed w-full z-50 bg-black/80 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+          <img
+            src="./images/logo.jpeg"
+            alt="GoldSpoon"
+            className="h-24 md:h-28 w-auto object-contain"
+          />
+        </div>
 
-        <h1 className="text-3xl font-bold text-yellow-500">
-          Goldenspoon
-        </h1>
+        {/* Desktop */}
+        <div className="hidden md:flex gap-8">
+          {links.map((link) => (
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              className="hover:text-yellow-500"
+            >
+              {link}
+            </a>
+          ))}
+        </div>
 
-        <ul className="hidden md:flex gap-8 text-white">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Gallery</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-
-        <button className="hidden md:block bg-yellow-500 text-black px-5 py-2 rounded-full font-semibold hover:scale-105 transition">
-          Book Event
+        {/* Mobile Button */}
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
+          {isOpen ? <X /> : <Menu />}
         </button>
-
-        <FaBars className="text-2xl md:hidden text-yellow-500" />
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-zinc-950 border-t border-yellow-500/20">
+          {links.map((link) => (
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              className="
+                block
+                px-6
+                py-4
+                border-b
+                border-yellow-500/10
+              "
+            >
+              {link}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   )
 }
